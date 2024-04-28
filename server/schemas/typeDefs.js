@@ -8,7 +8,7 @@ const typeDefs = `
     }
 
     type Book {
-        bookId: ID!
+        bookId: ID
         authors: []
         description: String!
         title: String!
@@ -17,25 +17,24 @@ const typeDefs = `
     }
 
     type Auth {
-        // token
-
-        // user (References the User type.)
+        token: ID!
+        user User
     }
 
     type Query {
-        // me: Which returns a User type
+        me: User
 
     }
 
     type Mutation {
-        // createUser: Accepts a username, email, and password as parameters; returns an Auth type.
+        createUser: (username: String!, email: String!, password: String!) :Auth
 
-        // login: Accepts an email and password as parameters; returns an Auth type.
+        login: (email: String!, password: String!) :Auth
         
-        // saveBook: Accepts a book author's array, description, title, bookId, image, and link as parameters; returns a User type. (Look into creating what's known as an input type to handle all of these parameters!)
+        // (Look into creating what's known as an input type to handle all of these parameters!)//
+        saveBook: (savedBooks: [], description: String!, title: String!, bookId: String!, image: String!, link: String!) :User
         
-        // deleteBook: Accepts a book's bookId as a parameter; returns a User type.
-
+        deleteBook: (bookId: String!) :User
     }
 `;
 
